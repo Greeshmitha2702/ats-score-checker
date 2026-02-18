@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Login from './Login';
+import UploadSections from "./UploadSection";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState("");
@@ -20,7 +21,7 @@ function App() {
           ) : (
             <div>
               <h2>Welcome, {username}!</h2>
-              {/* UploadSection will go here */}
+              <UploadSections />
             </div>
           )}
         </div>
