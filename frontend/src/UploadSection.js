@@ -9,10 +9,21 @@ function UploadSections(){
     const handleJdChange = (e) => {
         setJd(e.target.value);
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         // Here you would typically send the resume and JD to the backend for processing
-        alert(`Resume: ${resume ? resume.name : "No file selected"}, JD: ${jd}`);
+        const formData = new FormData();
+        formData.append("resume", resume);
+        formData.append("jd", jd);
+        try {
+            const response = await fetch("http://localhost:8000/score", {
+                method: "POST",
+                body: formData
+            });
+            const result = await response.json();
+            alert(`Message: Resume uploaded, Resume: ${resume ? resume.name : "No file selected"}, JD: ${jd}, Score: ${result.score}`);        } catch (error) {
+            console.error("Error submitting form:", error);
+        }
     };
     return (
         <form onSubmit={handleSubmit}>
