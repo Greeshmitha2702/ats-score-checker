@@ -6,11 +6,20 @@ function Login({ onLogin }) {
   const [password, setPassword] = useState("");
 
   // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevents page reload
-    // For now, just call onLogin (no real authentication)
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  const response = await fetch("http://localhost:8000/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ username, password }),
+  });
+  const result = await response.json();
+  if (result.success) {
     onLogin(username);
-  };
+  } else {
+    alert(result.message);
+  }
+};
 
   return (
     <div className="login-container">
