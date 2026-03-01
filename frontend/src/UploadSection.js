@@ -21,7 +21,7 @@ function UploadSections(){
                 body: formData
             });
             const result = await response.json();
-            alert(`Message: Resume uploaded, Resume: ${resume ? resume.name : "No file selected"}, JD: ${jd}, Score: ${result.score}`);        } catch (error) {
+            alert(`Message: Resume uploaded, Resume: ${resume ? resume.name : "No file selected"}, Score: ${result.score}`);        } catch (error) {
             console.error("Error submitting form:", error);
         }
     };
